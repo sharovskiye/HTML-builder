@@ -1,7 +1,6 @@
 const readline = require('readline');
 const fs = require('fs');
 const path = require('path');
-const { exit } = require('process');
 
 
 let writeableStream = fs.createWriteStream(path.join(__dirname, 'text.txt'));
