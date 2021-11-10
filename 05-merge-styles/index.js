@@ -5,15 +5,16 @@ const link = path.join(__dirname, 'styles')
 async function copyFile() {
     const files = await promises.readdir(link, { withFileTypes: true });
     let arrCss = []
+    let writeableStream = fs.createWriteStream(__dirname + '\\project-dist\\bundle.css');
 
     function readable(name) {
-        let writeableStream = fs.createWriteStream(__dirname + '\\project-dist\\bundle.css');
         let readableStream = fs.createReadStream(
             link + '\\' + name,
             { encoding: 'utf8' }
         );
         readableStream.on('data', async function (chunk) {
             writeableStream.write(chunk);
+            writeableStream.write('\n');
         });
 
     }
